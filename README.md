@@ -149,7 +149,7 @@ acc = accuracy(preds, targs)
 
 ## 📦 Deployment
 
-Load model-F.pkl on your onboard Python stack; feed live frame crops to learner.predict(); trigger AUV actions based on recognized gestures.
+Load Scuba-Detection-NN  [Here](https://drive.google.com/file/d/1kN0wmc8Rq_dV9wv4WIkmOEjAjUXYHc4z/view?usp=drive_link) on your onboard Python stack; feed live frame crops to learner.predict(); trigger AUV actions based on recognized gestures.
 
 
 ## 🤝 Contributing
