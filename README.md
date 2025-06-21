@@ -15,10 +15,8 @@ Built in Google Colab with Fast.ai/PyTorch, it supports scenario‐aware splits,
 - [🧠 Model Architecture](#️-model-architecture)  
 - [🏋️ Training Pipeline](#️-training-pipeline)  
 - [🔎 Evaluation](#️-evaluation)  
-- [📦 Export & Deployment](#️-export--deployment)  
-- [📓 Google Colab Notebook](#️-google-colab-notebook)  
+- [📦 Export & Deployment](#️-deployment)  
 - [🤝 Contributing](#️-contributing)  
-- [📜 License](#️-license)  
 
 ---
 
@@ -121,12 +119,35 @@ learn.fit_one_cycle(
                                               fname='resnet50-stage1')]
 )
 ```
+
 ### Export
+
 ```python
 learn.export('results/model-F.pkl')
 ```
 
-## 📦 Export & Deployment
+
+## 🔎 Evaluation
+### Top-Loss Visualization:
+```
+interp = ClassificationInterpretation.from_learner(learn)
+interp.plot_top_losses(9, figsize=(15,11))
+```
+
+### Confusion Matrix & Most Confused:
+```python
+interp.plot_confusion_matrix(figsize=(12,12))
+print(interp.most_confused(min_val=2))
+```
+
+### Per-Scenario Accuracy:
+```python
+learn.dls = data_test['genova-A']
+preds, targs = learn.get_preds()
+acc = accuracy(preds, targs)
+```
+
+## 📦 Deployment
 
 Load model-F.pkl on your onboard Python stack; feed live frame crops to learner.predict(); trigger AUV actions based on recognized gestures.
 
